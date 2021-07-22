@@ -22,10 +22,17 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: "master"
           TO_BRANCH: "develop"
-      - name: Opening pull request to release
-        id: pull_to_release
-        uses: tretuna/sync-branches@1.2.0
+#       - name: Opening pull request to release
+#         id: pull_to_release
+#         uses: tretuna/sync-branches@1.2.0
+#         with:
+#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#           FROM_BRANCH: "master"
+#           TO_BRANCH: "release"
+      - name: Merge PR to develop
+        id: merge_to_develop
+        uses: reitermarkus/automerge@v2
         with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          FROM_BRANCH: "master"
-          TO_BRANCH: "release"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: merge
+          pull-request: ${{ PULL_REQUEST_URL }}

@@ -35,4 +35,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           merge-method: merge
-          pull-request: ${{ steps.pull_to_develop.outputs.PULL_REQUEST_URL }}
+          pull-request: ${{ steps.pull_to_develop.outputs.PULL_REQUEST_NUMBER }}

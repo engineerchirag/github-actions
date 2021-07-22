@@ -31,7 +31,7 @@ jobs:
 #           TO_BRANCH: "release"
       - name: Merge PR to develop
         id: merge_to_develop
-        uses: reitermarkus/automerge@v2
+        uses: reitermarkus/automerge@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           merge-method: merge

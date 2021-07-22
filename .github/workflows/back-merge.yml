@@ -33,6 +33,6 @@ jobs:
         id: merge_to_develop
         uses: reitermarkus/automerge@v1
         with:
-          token: ${{ secrets.GITHUB_MERGE }}
+          token: ${{ secrets.MERGE_GITHUB_SECRET }}
           merge-method: merge
           pull-request: ${{ steps.pull_to_develop.outputs.PULL_REQUEST_NUMBER }}

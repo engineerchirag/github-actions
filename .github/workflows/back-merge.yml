@@ -20,7 +20,7 @@ jobs:
         id: vars
         run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
       - name: 'Output Env'
-        run: echo "Github base branch - ${{ steps.vars.outputs.short_ref }}
+        run: echo "Github base branch - ${{ steps.vars.outputs.short_ref }}"
       - name: Opening pull request to develop
         id: pull_to_develop
         if: ${{ steps.vars.outputs.short_ref }} == 'release'

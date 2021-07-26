@@ -24,7 +24,7 @@ jobs:
       - name: Opening pull request to develop
         id: pull_to_develop
         uses: tretuna/sync-branches@1.2.0
-        if: ${{ steps.vars.outputs.short_ref }} == 'release'
+        if: ${{ steps.vars.outputs.short_ref }} == 'dev'
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: "release"

@@ -1,6 +1,5 @@
-# github-actions
+# github-actions 
 Experiment github actions
 
-Generate pull request and merge   
-Test back merge 1
+Update develop
 

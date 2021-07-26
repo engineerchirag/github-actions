@@ -16,11 +16,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
       - name: 'Output Env'
-        run: echo "Github base branch - ${GITHUB_REF##*/}"
+        run: echo "Github base branch - ${{ steps.vars.outputs.short_ref }}
       - name: Opening pull request to develop
         id: pull_to_develop
-        if: ${{GITHUB_REF##*/}} == 'release'
+        if: ${{ steps.vars.outputs.short_ref }} == 'release'
         uses: tretuna/sync-branches@1.2.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -28,7 +31,7 @@ jobs:
           TO_BRANCH: "develop"
       - name: Opening pull request to release
         id: pull_to_release
-        if: ${{GITHUB_REF##*/}} == 'master'
+        if: ${{ steps.vars.outputs.short_ref }} == 'master'
         uses: tretuna/sync-branches@1.2.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

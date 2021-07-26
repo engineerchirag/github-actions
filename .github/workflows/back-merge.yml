@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+      - name: 'Output Env'
+        run: echo "Github base branch - ${{github.base_ref}}"
       - name: Opening pull request to develop
         id: pull_to_develop
         if: github.base_ref == 'release'

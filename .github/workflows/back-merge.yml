@@ -30,8 +30,8 @@ jobs:
           FROM_BRANCH: "release"
           TO_BRANCH: "develop"
       - name: Opening pull request to release
-        id: pull_to_release
         if: ${{ steps.vars.outputs.short_ref }} == 'master'
+        id: pull_to_release
         uses: tretuna/sync-branches@1.2.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

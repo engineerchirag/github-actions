@@ -1,8 +1,9 @@
-name: Sync
+name: Back Merge
 on:
   push:
     branches:
       - master
+      - release
 
 jobs:
   sync-branches:
@@ -14,7 +15,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: "14.x"
       - name: Opening pull request to develop
         id: pull_to_develop
         uses: tretuna/sync-branches@1.2.0
@@ -22,10 +23,10 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: "master"
           TO_BRANCH: "develop"
-#       - name: Opening pull request to release
-#         id: pull_to_release
-#         uses: tretuna/sync-branches@1.2.0
-#         with:
-#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-#           FROM_BRANCH: "master"
-#           TO_BRANCH: "release"
+      - name: Opening pull request to release
+        id: pull_to_release
+        uses: tretuna/sync-branches@1.2.0
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          FROM_BRANCH: "master"
+          TO_BRANCH: "release"

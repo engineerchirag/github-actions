@@ -16,15 +16,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+      - name: 'Output Env'
+        run: echo "Github base branch - ${{github.base_ref}}"
       - name: Opening pull request to develop
         id: pull_to_develop
+        if: github.base_ref == 'release'
         uses: tretuna/sync-branches@1.2.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          FROM_BRANCH: "master"
+          FROM_BRANCH: "release"
           TO_BRANCH: "develop"
       - name: Opening pull request to release
         id: pull_to_release
+        if: github.base_ref == 'master'
         uses: tretuna/sync-branches@1.2.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

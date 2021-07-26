@@ -23,16 +23,16 @@ jobs:
         run: echo "Github base branch - ${{ steps.vars.outputs.short_ref }}"
       - name: Opening pull request to develop
         id: pull_to_develop
-        if: ${{ steps.vars.outputs.short_ref }} == 'release'
         uses: tretuna/sync-branches@1.2.0
+        if: ${{ steps.vars.outputs.short_ref }} == 'release'
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: "release"
           TO_BRANCH: "develop"
       - name: Opening pull request to release
-        if: ${{ steps.vars.outputs.short_ref }} == 'master'
         id: pull_to_release
         uses: tretuna/sync-branches@1.2.0
+        if: ${{ steps.vars.outputs.short_ref }} == 'master'
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: "master"
